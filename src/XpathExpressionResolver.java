@@ -24,8 +24,9 @@ import org.xml.sax.SAXException;
 
 
         public XpathExpressionResolver(String xmlFileUrl){
-            xmlDocument = createXmlDocument();
-            xPath = createXPath();
+            this.xmlFileUrl = xmlFileUrl;
+            this.xmlDocument = createXmlDocument();
+            this.xPath = createXPath();
         }
 
 
@@ -47,7 +48,7 @@ import org.xml.sax.SAXException;
             factory.setNamespaceAware(true);
             try{
                 DocumentBuilder builder = factory.newDocumentBuilder();
-                return builder.parse("employees.xml");
+                return builder.parse(xmlFileUrl);
             }catch (ParserConfigurationException | IOException | SAXException e){
                 e.printStackTrace();
                 return null;
